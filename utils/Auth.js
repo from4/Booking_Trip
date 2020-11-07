@@ -54,12 +54,12 @@ const userRegister = async (userDets, role, res) => {
  * @DESC To Login the user (ADMIN, SUPER_ADMIN, USER)
  */
 const userLogin = async (userCreds, role, res) => {
-  let { username, password } = userCreds;
+  let { email, password } = userCreds;
   // First Check if the username is in the database
-  const user = await User.findOne({ username });
+  const user = await User.findOne({ email });
   if (!user) {
     return res.status(404).json({
-      message: "Username is not found. Invalid login credentials.",
+      message: "Email is not found. Invalid login credentials.",
       success: false
     });
   }

@@ -5,6 +5,7 @@ const {
   userLogin,
   checkRole,
   userRegister,
+  updateProfile,
   serializeUser
 } = require("../utils/Auth");
 
@@ -81,5 +82,16 @@ router.get(
     return res.json("Super admin and Admin");
   }
 );
+
+// User, Admin and SuperAdmin Profile Update Route
+router.put(
+  "/edit-profile/:id",
+  userAuth,
+  checkRole(["superadmin", "admin", "user"]),
+  async (req, res) => {
+    await updateProfile(req, res)
+  }
+);
+
 
 module.exports = router;

@@ -36,7 +36,7 @@ const UserSchema = new Schema(
       type: String,
       required: false
     },
-    citty: {
+    city: {
       type: String,
       required: false
     },

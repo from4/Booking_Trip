@@ -1,7 +1,7 @@
 const { Schema, model } = require("mongoose");
 
-const RoomSchema = new Schema({
-    name: {
+const RuleSchema = new Schema({
+    description: {
         type: String,
         required: true
     }

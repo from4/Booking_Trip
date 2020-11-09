@@ -1,12 +1,13 @@
 const { Schema, model } = require("mongoose");
 
-const BedSchema = new Schema({
-    name: {
+//superadmin
+const ModeratorSchema = new Schema({
+    email: {
         type: String,
         required: true
     },
-    size: {
-        type: Number,
+    password: {
+        type: String,
         required: true
     }
 })

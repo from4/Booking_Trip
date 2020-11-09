@@ -1,12 +1,12 @@
 const { Schema, model } = require("mongoose");
 
-const BedSchema = new Schema({
+const HouseTypeSchema = new Schema({
     name: {
         type: String,
         required: true
     },
-    size: {
-        type: Number,
-        required: true
+    description: {
+        type: String,
+        required:false
     }
 })

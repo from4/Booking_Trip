@@ -1,12 +1,12 @@
 const { Schema, model } = require("mongoose");
 
-const BedSchema = new Schema({
+const EquipmentSchema = new Schema({
     name: {
         type: String,
         required: true
     },
-    size: {
-        type: Number,
+    description: {
+        type: String,
         required: true
     }
 })

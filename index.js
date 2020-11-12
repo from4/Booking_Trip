@@ -1,9 +1,11 @@
 const cors = require("cors");
+const router = require("express").Router();
 const exp = require("express");
 const bp = require("body-parser");
 const passport = require("passport");
 const { connect } = require("mongoose");
 const { success, error } = require("consola");
+const { cronJob } = require("./utils/NodeCron");
 
 // Bring in the app constants
 const { DB, PORT } = require("./config");
@@ -19,7 +21,10 @@ app.use(passport.initialize());
 require("./middlewares/passport")(passport);
 
 // User Router Middleware
+
 app.use("/api/users", require("./routes/users"));
+app.use("/api/houses", require("./routes/houses"));
+app.use("/api/houses", require("./routes/reservations"));
 
 const startApp = async () => {
   try {

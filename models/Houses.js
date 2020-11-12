@@ -1,6 +1,6 @@
 const { Schema, model } = require("mongoose");
 
-const HouseSchema = new Schema({
+const HousesSchema = new Schema({
     name: {
         type: String,
         required: true
@@ -9,12 +9,16 @@ const HouseSchema = new Schema({
         type: String,
         required: true
     },
+    images: {
+        type: Array,
+        required: true
+    },
     address: {
         type: String,
         required: true
     },
     nb_rooms: {
-        type: Nmuber,
+        type: Number,
         required: true
     },
     disponibility: {
@@ -38,3 +42,5 @@ const HouseSchema = new Schema({
         required: true
     }
 })
+
+module.exports = model("houses", HousesSchema);

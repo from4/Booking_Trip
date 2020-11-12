@@ -7,8 +7,6 @@ const { SECRET } = require("../config");
 /**
  * @DESC To register the user (ADMIN, SUPER_ADMIN, USER)
  */
-
-
 const userRegister = async (userDets, role, res) => {
   try {
     // Validate the username

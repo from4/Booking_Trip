@@ -1,0 +1,15 @@
+[{
+  "_id": {
+    "$oid": "5fad74c7c24fbb2a4c638ee1"
+  },
+  "name": "teenwow",
+  "size": 2,
+  "house_id": "5faa9f16c24bfc25b4f7aec6"
+},{
+  "_id": {
+    "$oid": "5fad74c7c24fbb2a4c638ee2"
+  },
+  "name": "allYouLike",
+  "size": 1,
+  "house_id": "5faa9f16c24bfc25b4f7aec6"
+}]

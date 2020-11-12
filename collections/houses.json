@@ -1,0 +1,39 @@
+[{
+  "_id": {
+    "$oid": "5faa9f16c24bfc25b4f7aec6"
+  },
+  "name": "test",
+  "description": "test",
+  "images": [
+    "1",
+    "2",
+    "3"
+  ],
+  "address": "test",
+  "nb_rooms": "test",
+  "disponibility": true,
+  "price": 0,
+  "rule_id": "5faa9f9bc24bfc25b4f7aec8",
+  "total_note": 5,
+  "average_note": 3.5,
+  "equipments": ""
+},{
+  "_id": {
+    "$oid": "5faa9f4dc24bfc25b4f7aec7"
+  },
+  "name": "house",
+  "description": "house",
+  "images": [
+    "1",
+    "2",
+    "3"
+  ],
+  "address": "house",
+  "nb_rooms": "house",
+  "disponibility": true,
+  "price": 0,
+  "rule_id": "5faa9f9bc24bfc25b4f7aec8",
+  "total_note": 8,
+  "average_note": 5.5,
+  "equipments": ""
+}]

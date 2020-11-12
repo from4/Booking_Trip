@@ -1,0 +1,25 @@
+[{
+  "_id": {
+    "$oid": "5fad7224c24fbb2a4c638edd"
+  },
+  "name": "bedroom",
+  "house_id": "5faa9f16c24bfc25b4f7aec6"
+},{
+  "_id": {
+    "$oid": "5fad7224c24fbb2a4c638ede"
+  },
+  "name": "livingroom",
+  "house_id": "5faa9f16c24bfc25b4f7aec6"
+},{
+  "_id": {
+    "$oid": "5fad726ec24fbb2a4c638edf"
+  },
+  "name": "bedroom",
+  "house_id": "5faa9f4dc24bfc25b4f7aec7"
+},{
+  "_id": {
+    "$oid": "5fad726ec24fbb2a4c638ee0"
+  },
+  "name": "kitchen",
+  "house_id": "5faa9f4dc24bfc25b4f7aec7"
+}]

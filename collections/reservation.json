@@ -1,0 +1,25 @@
+[{
+  "_id": {
+    "$oid": "5faab9901be77f198c6d8df6"
+  },
+  "id_house": "5faa9f16c24bfc25b4f7aec6",
+  "arrival": "Tue Nov 10 2020 00:00:00 GMT+0100 (West Africa Standard Time)",
+  "departure": "Wed Nov 11 2020 00:00:00 GMT+0100 (West Africa Standard Time)",
+  "price": 200,
+  "available": false,
+  "createdAt": {
+    "$date": "2020-11-10T21:35:48.794Z"
+  },
+  "updatedAt": {
+    "$date": "2020-11-10T21:35:48.794Z"
+  }
+},{
+  "_id": {
+    "$oid": "5faab9901be77f198c6d8df7"
+  },
+  "id_house": "5faa9f4dc24bfc25b4f7aec7",
+  "arrival": "Tue Nov 10 2020 00:00:00 GMT+0100 (West Africa Standard Time)",
+  "departure": "Wed Nov 11 2020 00:00:00 GMT+0100 (West Africa Standard Time)",
+  "price": 300,
+  "available": true
+}]

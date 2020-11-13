@@ -1,0 +1,51 @@
+[{
+  "_id": {
+    "$oid": "5fa6b9bfc0d4832d3050e984"
+  },
+  "role": "user",
+  "username": "test",
+  "email": "test@gmail.com",
+  "name": "testname",
+  "password": "$2a$12$p87EgAZjylFXVdhQOib2HOm0LCVM.DgyVEqDKXZMBZVXQZm8Mw3pG",
+  "createdAt": {
+    "$date": "2020-11-07T15:14:07.535Z"
+  },
+  "updatedAt": {
+    "$date": "2020-11-10T13:37:23.543Z"
+  },
+  "__v": 0,
+  "address": "anything",
+  "city": "anything"
+},{
+  "_id": {
+    "$oid": "5fa6bad3c0d4832d3050e987"
+  },
+  "role": "superadmin",
+  "username": "admin",
+  "email": "admin@admin.com",
+  "name": "admin",
+  "password": "$2a$12$6U.gACPoCEdSslbilOlbkeSgkFR7GFRfpp2RkA7SgYMgpTjAl7SeS",
+  "createdAt": {
+    "$date": "2020-11-07T15:18:43.977Z"
+  },
+  "updatedAt": {
+    "$date": "2020-11-07T15:18:43.977Z"
+  },
+  "__v": 0
+},{
+  "_id": {
+    "$oid": "5fa6baf7c0d4832d3050e988"
+  },
+  "role": "admin",
+  "username": "John Doe",
+  "email": "john@admin.com",
+  "name": "John",
+  "password": "$2a$12$TPm0y0B6KNByuLAaT6fIC.dvNdKyelZcsT4U8iZSruzqPhkjOh4ZS",
+  "createdAt": {
+    "$date": "2020-11-07T15:19:19.372Z"
+  },
+  "updatedAt": {
+    "$date": "2020-11-07T15:19:19.372Z"
+  },
+  "__v": 0
+}]

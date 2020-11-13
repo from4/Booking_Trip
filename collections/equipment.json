@@ -1,0 +1,22 @@
+[{
+  "_id": {
+    "$oid": "5fad4eb0c24fbb2a4c638eda"
+  },
+  "name": "TV",
+  "description": "TV dds4",
+  "house_id": "5faa9f16c24bfc25b4f7aec6"
+},{
+  "_id": {
+    "$oid": "5fad4eb0c24fbb2a4c638edb"
+  },
+  "name": "Radio",
+  "description": "Radio mb4",
+  "house_id": "5faa9f16c24bfc25b4f7aec6"
+},{
+  "_id": {
+    "$oid": "5fad4eb0c24fbb2a4c638edc"
+  },
+  "name": "Door",
+  "description": "Door d5s6554",
+  "house_id": "5faa9f4dc24bfc25b4f7aec7"
+}]

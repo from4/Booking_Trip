@@ -238,7 +238,7 @@ const DeleteHouses = async(req, res) => {
 
 //DELETE ROOMS
 const DeleteRooms = async(req, res) => {
-    Rooms.findByIdAndRemove({ _id: req.params.id_room, house_id: req.params.id_house }, (err, doc) => {
+    Rooms.findByIdAndRemove({ _id: req.params.id, house_id: req.params.house_id }, (err, doc) => {
         if (err) {
             res.json({
                 message: 'error',
@@ -258,29 +258,6 @@ const DeleteRooms = async(req, res) => {
             }
         }
     });
-}
-
-const UpdateRooms = async(req, res) => {
-
-}
-const AddEquipment = async(req, res) => {
-
-}
-const DeleteEquipment = async(req, res) => {
-
-}
-const UpdateEquipment = async(req, res) => {
-
-}
-
-const DeleteBeds = async(req, res) => {
-
-}
-const UpdateBeds = async(req, res) => {
-
-}
-const UpdateHouses = async(req, res) => {
-
 }
 
 module.exports = {

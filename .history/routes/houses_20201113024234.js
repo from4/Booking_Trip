@@ -70,7 +70,7 @@ router.post("/add-rooms", async(req, res) => {
 });
 
 //delete Rooms Router
-router.delete("/delete-rooms/:id_house/:id_room", async(req, res) => {
+router.delete("/delete-rooms/:id/:id", async(req, res) => {
     return await DeleteRooms(req, res);
 });
 

@@ -239,8 +239,3 @@ module.exports = {
   FetchHousesByAddress,
   FetchHousesByDate,
 };
-<<<<<<< HEAD
-main branch here
-=======
-update branch here
->>>>>>> updates

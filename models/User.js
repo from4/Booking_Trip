@@ -4,49 +4,49 @@ const UserSchema = new Schema(
   {
     name: {
       type: String,
-      required: true
+      required: false,
     },
     email: {
       type: String,
-      required: true
+      required: true,
     },
     role: {
       type: String,
       default: "user",
-      enum: ["user", "admin", "superadmin"]
+      enum: ["user", "admin", "superadmin"],
     },
     username: {
       type: String,
-      required: true
+      required: false,
     },
     password: {
       type: String,
-      required: true
+      required: true,
     },
     //not required fields
     birthday: {
       type: String,
-      required: false
+      required: false,
     },
     sex: {
       type: String,
-      required: false
+      required: false,
     },
     phone: {
       type: String,
-      required: false
+      required: false,
     },
     city: {
       type: String,
-      required: false
+      required: false,
     },
     address: {
       type: String,
-      required: false
+      required: false,
     },
     avatar: {
       type: String,
-      required: false
+      required: false,
     },
   },
   { timestamps: true }

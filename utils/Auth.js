@@ -9,6 +9,7 @@ const { SECRET } = require("../config");
  */
 const userRegister = async (userDets, role, res) => {
   try {
+    /*
     // Validate the username
     let usernameNotTaken = await validateUsername(userDets.username);
     if (!usernameNotTaken) {
@@ -16,14 +17,14 @@ const userRegister = async (userDets, role, res) => {
         message: `Username is already taken.`,
         success: false
       });
-    }
+    }*/
 
     // validate the email
     let emailNotRegistered = await validateEmail(userDets.email);
     if (!emailNotRegistered) {
       return res.status(400).json({
         message: `Email is already registered.`,
-        success: false
+        success: false,
       });
     }
 
@@ -33,13 +34,13 @@ const userRegister = async (userDets, role, res) => {
     const newUser = new User({
       ...userDets,
       password,
-      role
+      role,
     });
 
     await newUser.save();
     return res.status(201).json({
-      message: "Hurry! now you are successfully registred. Please nor login.",
-      success: true
+      message: "Hurry! now you are successfully registered. Please nor login.",
+      success: true,
     });
   } catch (err) {
     // Implement logger function (winston)

@@ -175,12 +175,12 @@ const AddHouses = async(req, res) => {
 //ADD ROOMS
 
 const AddRooms = async(req, res) => {
-    const Room = new Rooms({
+    const Room = new Room({
         name: req.body.name,
-        house_id: req.body.house_id
+
     })
 
-    await Room.save();
+    await Rooms.save();
     return res.status(201).json({
         message: "room has been added.",
         success: true
@@ -270,7 +270,7 @@ const DeleteRooms = async(req, res) => {
 
 const UpdateRooms = async(req, res) => {
     const id = req.params.id;
-    const Room = await Rooms.findOne({ _id: id }, (err, foundObject) => {
+    const Rooms = await Rooms.findOne({ _id: id }, (err, foundObject) => {
         if (err) {
             res.status(500).json({
                 message: "Error, check Rooms Update",
@@ -279,7 +279,7 @@ const UpdateRooms = async(req, res) => {
         } else {
             if (!foundObject) {
                 res.status(404).json({
-                    message: "Error, room id not found",
+                    message: "Error, user id not found",
                     success: false
                 });
             } else {
@@ -290,12 +290,12 @@ const UpdateRooms = async(req, res) => {
                 foundObject.save(function(err) {
                     if (err) {
                         res.status(500).json({
-                            message: "Error, couldn't save room!",
+                            message: "Error, couldn't save user!",
                             success: false
                         });
                     } else {
                         res.status(201).json({
-                            message: 'Room info has been updated successfully!',
+                            message: 'User info has been updated successfully!',
                             success: true
                         });
                     }
@@ -306,220 +306,24 @@ const UpdateRooms = async(req, res) => {
 }
 
 const AddEquipment = async(req, res) => {
-    const equipment = new Equipments({
-        name: req.body.name,
-        description: req.body.description
 
-    })
-
-    await Equipments.save();
-    return res.status(201).json({
-        message: "equpiment has been added.",
-        success: true
-    });
 }
 const DeleteEquipment = async(req, res) => {
-    Rooms.findByIdAndRemove({ _id: req.params.id_room, house_id: req.params.id_house }, (err, doc) => {
-        if (err) {
-            res.json({
-                message: 'error',
-                success: false
-            })
-        } else {
-            if (doc)
-                res.json({
-                    message: "room has been deleted!",
-                    success: true
-                })
-            else {
-                res.json({
-                    message: "couldnt find house",
-                    success: false
-                })
-            }
-        }
-    });
+
 }
 const UpdateEquipment = async(req, res) => {
 
-    const id = req.params.id;
-    if (id.match(/^[0-9a-fA-F]{24}$/)) {
-        const Equipment = await Equipments.findById({ id }, (err, foundObject) => {
-            if (err) {
-                res.status(500).json({
-                    message: "Error, check equipment Update",
-                    success: false
-                });
-            } else {
-                if (!foundObject) {
-                    res.status(404).json({
-                        message: "Error, equipment id not found",
-                        success: false
-                    });
-                } else {
-                    if (req.body.name) {
-                        foundObject.name = req.body.name
-                    }
-                    if (req.body.description) {
-                        foundObject.description = req.body.description
-                    }
-
-                    foundObject.save(function(err) {
-                        if (err) {
-                            res.status(500).json({
-                                message: "Error, couldn't save room!",
-                                success: false
-                            });
-                        } else {
-                            res.status(201).json({
-                                message: 'Equipment info has been updated successfully!',
-                                success: true
-                            });
-                        }
-                    })
-                }
-            }
-        });
-    }
-    //else {
-    //     res.json({
-    //         message: 'please check the id you passed in, seems like it\'s incorrect',
-    //         success: false
-    //     })
-    // }
 }
 
-
 const DeleteBeds = async(req, res) => {
-    Beds.findByIdAndRemove({ _id: req.params.id_bed, house_id: req.params.id_house }, (err, doc) => {
-        if (err) {
-            res.json({
-                message: 'error',
-                success: false
-            })
-        } else {
-            if (doc)
-                res.json({
-                    message: "bed has been deleted!",
-                    success: true
-                })
-            else {
-                res.json({
-                    message: "couldnt find house",
-                    success: false
-                })
-            }
-        }
-    });
 
 }
 const UpdateBeds = async(req, res) => {
 
-    const id = req.params.id;
-    const Bed = await Beds.findOne({ _id: id }, (err, foundObject) => {
-        if (err) {
-            res.status(500).json({
-                message: "Error, check Rooms Update",
-                success: false
-            });
-        } else {
-            if (!foundObject) {
-                res.status(404).json({
-                    message: "Error, room id not found",
-                    success: false
-                });
-            } else {
-                if (req.body.name) {
-                    foundObject.name = req.body.name
-                }
-                if (req.body.size) {
-                    foundObject.size = req.body.size
-                }
-                foundObject.save(function(err) {
-                    if (err) {
-                        res.status(500).json({
-                            message: "Error, couldn't save room!",
-                            success: false
-                        });
-                    } else {
-                        res.status(201).json({
-                            message: 'Room info has been updated successfully!',
-                            success: true
-                        });
-                    }
-                })
-            }
-        }
-    });
 }
-
-
 const UpdateHouses = async(req, res) => {
-    const id = req.params.id;
-    const House = await Houses.findOne({ _id: id }, (err, foundObject) => {
-        if (err) {
-            res.status(500).json({
-                message: "Error, check House Update",
-                success: false
-            });
-        } else {
-            if (!foundObject) {
-                res.status(404).json({
-                    message: "Error, house id not found",
-                    success: false
-                });
-            } else {
-                if (req.body.name) {
-                    foundObject.name = req.body.name
-                }
-                if (req.body.description) {
-                    foundObject.description = req.body.description
-                }
-                if (req.body.rule_id) {
-                    foundObject.rule_id = req.body.rule_id
-                }
-                if (req.body.images) {
-                    foundObject.images = req.body.images
-                }
-                if (req.body.address) {
-                    foundObject.address = req.body.address
-                }
-                if (req.body.nb_rooms) {
-                    foundObject.nb_rooms = req.body.nb_rooms
-                }
-                if (req.body.disponibility) {
-                    foundObject.disponibility = req.body.disponibility
-                }
-                if (req.body.price) {
-                    foundObject.price = req.body.price
-                }
-                if (req.body.total_note) {
-                    foundObject.total_note = req.body.total_note
-                }
-                if (req.body.average_note) {
-                    foundObject.average_note = req.body.average_note
-                }
-                foundObject.save(function(err) {
-                    if (err) {
-                        res.status(500).json({
-                            message: "Error, House couldn't save !",
-                            error: err,
-                            object: foundObject,
-                            reqbody: req.body,
-                            success: false
-                        });
-                    } else {
-                        res.status(201).json({
-                            message: 'House info has been updated successfully!',
-                            success: true
-                        });
-                    }
-                })
-            }
-        }
-    });
-}
 
+}
 
 module.exports = {
     FetchHouses,

@@ -108,7 +108,7 @@ router.delete("/delete-beds/:id_house/:id_bed", async(req, res) => {
 });
 
 //Update BEDS Router 
-router.put("/update-beds/:id", async(req, res) => {
+router.put("/update-beds/:id", userAuth, async(req, res) => {
     return await UpdateBeds(req, res);
 });
 

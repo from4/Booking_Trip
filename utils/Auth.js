@@ -12,13 +12,14 @@ const { SECRET } = require("../config");
 const userRegister = async(userDets, role, res) => {
     try {
         // Validate the username
+        /*
         let usernameNotTaken = await validateUsername(userDets.username);
         if (!usernameNotTaken) {
             return res.status(400).json({
                 message: `Username is already taken.`,
                 success: false
             });
-        }
+        }*/
 
         // validate the email
         let emailNotRegistered = await validateEmail(userDets.email);

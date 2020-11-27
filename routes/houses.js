@@ -32,11 +32,6 @@ router.get("/houses", async (req, res) => {
   return await FetchHouses(req, res);
 });
 
-// Fetch House Equipments Router
-router.get("/equipments", async (req, res) => {
-  return await FetchHouseEquipments(req, res);
-});
-
 // Fetch House Rooms Router
 router.get("/rooms", async (req, res) => {
   return await FetchHouseRooms(req, res);
@@ -76,22 +71,6 @@ router.get("/houses", async (req, res) => {
 router.get("/equipments", async (req, res) => {
   return await FetchHouseEquipments(req, res);
 });
-
-// Fetch House Rooms Router
-router.get("/rooms", async (req, res) => {
-  return await FetchHouseRooms(req, res);
-});
-
-// Fetch Room beds Router
-router.get("/beds", async (req, res) => {
-  return await FetchRoomBeds(req, res);
-});
-
-// Fetch houses by address Router
-router.get("/beds", async (req, res) => {
-  return await FetchRoomBeds(req, res);
-});
-
 
 //add houses Router
 router.post("/add-house", async(req, res) => {

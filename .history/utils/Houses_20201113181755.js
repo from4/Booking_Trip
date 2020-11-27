@@ -1,5 +1,4 @@
 const Houses = require("../models/Houses");
-const Reservations = require("../models/Reservations");
 const Equipments = require("../models/Equipments");
 const Rooms = require("../models/Rooms");
 const Beds = require("../models/Beds");
@@ -506,7 +505,6 @@ const UpdateHouses = async(req, res) => {
                             message: "Error, House couldn't save !",
                             error: err,
                             object: foundObject,
-                            reqbody: req.body,
                             success: false
                         });
                     } else {
@@ -539,94 +537,4 @@ module.exports = {
     AddBeds,
     DeleteBeds,
     UpdateBeds
-/**
- * @DESC To Fetch houses by name  
- */
-const FetchHousesByName = async (req, res) => {
-  const house = await Houses.find({name: req.body.name});
-  if (house) {
-    res.status(200).json({
-      house,
-      success: true,
-    });
-  } else {
-    res.status(400).json({
-      message: 'couldn\'t find any house with that name',
-      success: false,
-    });
-  }
-};
-
-/**
- * @DESC To Fetch houses by address  
- */
-const FetchHousesByAddress = async (req, res) => {
-  const house = await Houses.find({address: req.body.address});
-  if (house) {
-    res.status(200).json({
-      house,
-      success: true,
-    });
-  } else {
-    res.status(400).json({
-      message: 'couldn\'t find any house with that name',
-      success: false,
-    });
-  }
-};
-
-/**
- * @DESC To Fetch houses by departure+arrival date  
- */
-const FetchHousesByDate = async (req, res) => {
-  const house = await Houses.find({disponibility: true});   
-  function formatDate(date) {
-    var d = new Date(date),
-      month = "" + (d.getMonth() + 1),
-      day = "" + d.getDate(),
-      year = d.getFullYear();
-
-    if (month.length < 2) month = "0" + month;
-    if (day.length < 2) day = "0" + day;
-
-    return [year, month, day].join("-");
-  }
-  let houses = [];
-  if (house) {
-    const reservation = await Reservations.find()
-    if (reservation){
-      reservation.forEach(reserve=>{
-        //if (reserve.available) {
-          if (formatDate(reserve.arrival) <= formatDate(req.body.arrival) 
-          && formatDate(reserve.departure) >= formatDate(req.body.departure)){
-            return res.json({
-              message: 'this house already reserved during that period!',
-              success: false
-            })
-          }else{
-            houses.push(reserve.id_house)
-          }
-        //}
-      })
-      return res.status(200).json({
-        houses,
-        success: true,
-      });
-    }
-  } else {
-    res.status(400).json({
-      message: 'That house is already reserved!',
-      success: false,
-    });
-  }
-};
-
-module.exports = {
-  FetchHouses,
-  FetchHouseEquipments,
-  FetchHouseRooms,
-  FetchRoomBeds,
-  FetchHousesByName,
-  FetchHousesByAddress,
-  FetchHousesByDate,
 };

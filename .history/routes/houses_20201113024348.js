@@ -56,7 +56,7 @@ router.delete("/delete-house/:id", async(req, res) => {
 });
 
 //Update house Router
-router.put("/update-house/:id", async(req, res) => {
+router.put("/update-house", async(req, res) => {
     return await UpdateHouses(req, res);
 });
 
@@ -75,14 +75,14 @@ router.delete("/delete-rooms/:id_house/:id_room", async(req, res) => {
 });
 
 //Update Rooms Router 
-router.put("/update-rooms/:id", async(req, res) => {
+router.put("/update-rooms", async(req, res) => {
     return await UpdateRooms(req, res);
 });
 
 //EQUIPMENT Router
 
 //add Equipment Router
-router.post(" /add-equipment", async(req, res) => {
+router.post("/add-equipment", async(req, res) => {
     return await AddEquipment(req, res);
 });
 
@@ -92,70 +92,26 @@ router.delete("/delete-equipment", async(req, res) => {
 });
 
 //Update Equipment Router 
-router.put("/update-equipment/:id", async(req, res) => {
+router.put("/update-equipment", async(req, res) => {
     return await UpdateEquipment(req, res);
 });
 //BEDS ROUTER 
 
 //add BEDS Router
-router.post("/add-beds", async(req, res) => {
+router.post("/add-beds", userAuth, async(req, res) => {
     return await AddBeds(req, res);
 });
 
 //delete BEDS Router
-router.delete("/delete-beds/:id_house/:id_bed", async(req, res) => {
+router.delete("/delete-beds", userAuth, async(req, res) => {
     return await DeleteBeds(req, res);
 });
 
 //Update BEDS Router 
-router.put("/update-beds/:id", async(req, res) => {
+router.put("/update-beds", userAuth, async(req, res) => {
     return await UpdateBeds(req, res);
 });
 
 
- const {
-   FetchHouses,
-   FetchHouseEquipments,
-   FetchHouseRooms,
-   FetchRoomBeds,
-   FetchHousesByName,
-   FetchHousesByAddress,
-   FetchHousesByDate,
- } = require("../utils/Houses");
-
-// Fetch Houses Route
-router.get("/houses", async (req, res) => {
-  return await FetchHouses(req, res);
-});
-
-// Fetch House Equipments Router
-router.get("/equipments", async (req, res) => {
-  return await FetchHouseEquipments(req, res);
-});
- 
-// Fetch House Rooms Router
-router.get("/rooms", async (req, res) => {
-  return await FetchHouseRooms(req, res);
-});
-
-// Fetch Room beds Router
-router.get("/beds", async (req, res) => {
-  return await FetchRoomBeds(req, res);
-});
-
-// Fetch houses by name Router
-router.get("/name", async (req, res) => {
-  return await FetchHousesByName(req, res);
-});
-
-// Fetch houses by address Router
-router.get("/address", async (req, res) => {
-  return await FetchHousesByAddress(req, res);
-});
-
-// Fetch houses by date Router
-router.get("/date", async (req, res) => {
-  return await FetchHousesByDate(req, res);
-});
 
 module.exports = router;

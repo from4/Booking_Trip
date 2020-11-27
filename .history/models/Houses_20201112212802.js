@@ -30,7 +30,7 @@ const HousesSchema = new Schema({
         required: true
     },
     rule_id: {
-        type: String,
+        type: Number,
         required: true
     },
     total_note: {

@@ -82,7 +82,7 @@ router.put("/update-rooms/:id", async(req, res) => {
 //EQUIPMENT Router
 
 //add Equipment Router
-router.post(" /add-equipment", async(req, res) => {
+router.post("/add-equipment", async(req, res) => {
     return await AddEquipment(req, res);
 });
 
@@ -103,12 +103,12 @@ router.post("/add-beds", async(req, res) => {
 });
 
 //delete BEDS Router
-router.delete("/delete-beds/:id_house/:id_bed", async(req, res) => {
+router.delete("/delete-beds", async(req, res) => {
     return await DeleteBeds(req, res);
 });
 
 //Update BEDS Router 
-router.put("/update-beds/:id", async(req, res) => {
+router.put("/update-beds/:id", userAuth, async(req, res) => {
     return await UpdateBeds(req, res);
 });
 

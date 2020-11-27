@@ -504,8 +504,6 @@ const UpdateHouses = async(req, res) => {
                         res.status(500).json({
                             message: "Error, House couldn't save !",
                             error: err,
-                            object: foundObject,
-                            reqbody: req.body,
                             success: false
                         });
                     } else {

@@ -177,10 +177,10 @@ const AddHouses = async(req, res) => {
 const AddRooms = async(req, res) => {
     const Room = new Rooms({
         name: req.body.name,
-        house_id: req.body.house_id
+
     })
 
-    await Room.save();
+    await Rooms.save();
     return res.status(201).json({
         message: "room has been added.",
         success: true
@@ -391,7 +391,7 @@ const UpdateEquipment = async(req, res) => {
 
 
 const DeleteBeds = async(req, res) => {
-    Beds.findByIdAndRemove({ _id: req.params.id_bed, house_id: req.params.id_house }, (err, doc) => {
+    Beds.findByIdAndRemove({ _id: req.params.id_bed }, (err, doc) => {
         if (err) {
             res.json({
                 message: 'error',
@@ -435,6 +435,7 @@ const UpdateBeds = async(req, res) => {
                 if (req.body.size) {
                     foundObject.size = req.body.size
                 }
+
                 foundObject.save(function(err) {
                     if (err) {
                         res.status(500).json({
@@ -455,17 +456,18 @@ const UpdateBeds = async(req, res) => {
 
 
 const UpdateHouses = async(req, res) => {
+
     const id = req.params.id;
     const House = await Houses.findOne({ _id: id }, (err, foundObject) => {
         if (err) {
             res.status(500).json({
-                message: "Error, check House Update",
+                message: "Error, check Rooms Update",
                 success: false
             });
         } else {
             if (!foundObject) {
                 res.status(404).json({
-                    message: "Error, house id not found",
+                    message: "Error, room id not found",
                     success: false
                 });
             } else {
@@ -474,9 +476,6 @@ const UpdateHouses = async(req, res) => {
                 }
                 if (req.body.description) {
                     foundObject.description = req.body.description
-                }
-                if (req.body.rule_id) {
-                    foundObject.rule_id = req.body.rule_id
                 }
                 if (req.body.images) {
                     foundObject.images = req.body.images
@@ -499,18 +498,18 @@ const UpdateHouses = async(req, res) => {
                 if (req.body.average_note) {
                     foundObject.average_note = req.body.average_note
                 }
+
+
+
                 foundObject.save(function(err) {
                     if (err) {
                         res.status(500).json({
-                            message: "Error, House couldn't save !",
-                            error: err,
-                            object: foundObject,
-                            reqbody: req.body,
+                            message: "Error, couldn't save room!",
                             success: false
                         });
                     } else {
                         res.status(201).json({
-                            message: 'House info has been updated successfully!',
+                            message: 'Room info has been updated successfully!',
                             success: true
                         });
                     }

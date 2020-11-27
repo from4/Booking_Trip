@@ -475,9 +475,6 @@ const UpdateHouses = async(req, res) => {
                 if (req.body.description) {
                     foundObject.description = req.body.description
                 }
-                if (req.body.rule_id) {
-                    foundObject.rule_id = req.body.rule_id
-                }
                 if (req.body.images) {
                     foundObject.images = req.body.images
                 }
@@ -504,8 +501,6 @@ const UpdateHouses = async(req, res) => {
                         res.status(500).json({
                             message: "Error, House couldn't save !",
                             error: err,
-                            object: foundObject,
-                            reqbody: req.body,
                             success: false
                         });
                     } else {

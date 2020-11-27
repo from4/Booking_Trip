@@ -1,5 +1,4 @@
 # Booking Tip
-updated fork 
 
 ## Setup
 

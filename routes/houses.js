@@ -5,43 +5,91 @@ const {
 } = require("../utils/Auth");
 
 const {
-    FetchHouses,
-    FetchHouseEquipments,
-    FetchHouseRooms,
-    FetchRoomBeds,
-    DeleteHouses,
-    AddHouses,
-    UpdateHouses,
-    AddRooms,
-    DeleteRooms,
-    UpdateRooms,
-    AddEquipment,
-    DeleteEquipment,
-    UpdateEquipment,
-    AddBeds,
-    DeleteBeds,
-    UpdateBeds
-
+  FetchHouses,
+  FetchHouseEquipments,
+  FetchHouseRooms,
+  FetchRoomBeds,
+  FetchHousesByAddress,
+  FetchHousesByDate,
+  FetchHousesByRoom,
+  FetchHousesByName,
+  DeleteHouses,
+  AddHouses,
+  UpdateHouses,
+  AddRooms,
+  DeleteRooms,
+  UpdateRooms,
+  AddEquipment,
+  DeleteEquipment,
+  UpdateEquipment,
+  AddBeds,
+  DeleteBeds,
+  UpdateBeds,
 } = require("../utils/Houses");
 
 // Fetch Houses Route
-router.get("/houses", userAuth, async(req, res) => {
-    return await FetchHouses(req, res);
+router.get("/houses", async (req, res) => {
+  return await FetchHouses(req, res);
 });
 
 // Fetch House Equipments Router
-router.get("/equipments", userAuth, async(req, res) => {
-    return await FetchHouseEquipments(req, res);
+router.get("/equipments", async (req, res) => {
+  return await FetchHouseEquipments(req, res);
 });
 
 // Fetch House Rooms Router
-router.get("/rooms", userAuth, async(req, res) => {
-    return await FetchHouseRooms(req, res);
+router.get("/rooms", async (req, res) => {
+  return await FetchHouseRooms(req, res);
 });
 
 // Fetch Room beds Router
-router.get("/beds", userAuth, async(req, res) => {
-    return await FetchRoomBeds(req, res);
+router.get("/beds", async (req, res) => {
+  return await FetchRoomBeds(req, res);
+});
+
+// Fetch houses by name Router
+router.get("/name", async (req, res) => {
+  return await FetchHousesByName(req, res);
+});
+
+// Fetch houses by address Router
+router.get("/address", async (req, res) => {
+  return await FetchHousesByAddress(req, res);
+});
+
+// Fetch houses by date Router
+router.get("/date", async (req, res) => {
+  return await FetchHousesByDate(req, res);
+});
+
+// Fetch houses by nb_room
+router.get("/nb_room", async (req, res) => {
+  return await FetchHousesByRoom(req, res);
+});
+
+// Fetch Houses Route
+router.get("/houses", async (req, res) => {
+  return await FetchHouses(req, res);
+});
+
+// Fetch House Equipments Router
+router.get("/equipments", async (req, res) => {
+  return await FetchHouseEquipments(req, res);
+});
+
+// Fetch House Rooms Router
+router.get("/rooms", async (req, res) => {
+  return await FetchHouseRooms(req, res);
+});
+
+// Fetch Room beds Router
+router.get("/beds", async (req, res) => {
+  return await FetchRoomBeds(req, res);
+});
+
+// Fetch houses by address Router
+router.get("/beds", async (req, res) => {
+  return await FetchRoomBeds(req, res);
 });
 
 
@@ -59,8 +107,6 @@ router.delete("/delete-house/:id", async(req, res) => {
 router.put("/update-house/:id", async(req, res) => {
     return await UpdateHouses(req, res);
 });
-
-
 
 //ROOM ROUTES 
 
@@ -110,52 +156,6 @@ router.delete("/delete-beds/:id_house/:id_bed", async(req, res) => {
 //Update BEDS Router 
 router.put("/update-beds/:id", async(req, res) => {
     return await UpdateBeds(req, res);
-});
-
-
- const {
-   FetchHouses,
-   FetchHouseEquipments,
-   FetchHouseRooms,
-   FetchRoomBeds,
-   FetchHousesByName,
-   FetchHousesByAddress,
-   FetchHousesByDate,
- } = require("../utils/Houses");
-
-// Fetch Houses Route
-router.get("/houses", async (req, res) => {
-  return await FetchHouses(req, res);
-});
-
-// Fetch House Equipments Router
-router.get("/equipments", async (req, res) => {
-  return await FetchHouseEquipments(req, res);
-});
- 
-// Fetch House Rooms Router
-router.get("/rooms", async (req, res) => {
-  return await FetchHouseRooms(req, res);
-});
-
-// Fetch Room beds Router
-router.get("/beds", async (req, res) => {
-  return await FetchRoomBeds(req, res);
-});
-
-// Fetch houses by name Router
-router.get("/name", async (req, res) => {
-  return await FetchHousesByName(req, res);
-});
-
-// Fetch houses by address Router
-router.get("/address", async (req, res) => {
-  return await FetchHousesByAddress(req, res);
-});
-
-// Fetch houses by date Router
-router.get("/date", async (req, res) => {
-  return await FetchHousesByDate(req, res);
 });
 
 module.exports = router;

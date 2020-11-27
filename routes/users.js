@@ -1,4 +1,5 @@
 const router = require("express").Router();
+//const User = require("../models/User");
 // Bring in the User Registration function
 const {
   userAuth,

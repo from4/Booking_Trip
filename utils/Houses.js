@@ -6,7 +6,6 @@ const Beds = require("../models/Beds");
 const jwt = require("jsonwebtoken");
 const passport = require("passport");
 const { SECRET } = require("../config");
-const { json } = require("body-parser");
 
 /**
  * @DESC To update houses
@@ -151,6 +150,106 @@ const FetchHouses = async(req, res) => {
 };
 
 /**
+ * @DESC To Fetch houses by name  
+ */
+const FetchHousesByName = async (req, res) => {
+    const house = await Houses.find({name: req.body.name});
+    if (house) {
+      res.status(200).json({
+        house,
+        success: true,
+      });
+    } else {
+      res.status(400).json({
+        message: 'couldn\'t find any house with that name',
+        success: false,
+      });
+    }
+};
+  
+/**
+ * @DESC To Fetch houses by room  
+ */
+const FetchHousesByRoom = async (req, res) => {
+    const house = await Houses.find({nb_rooms: req.body.nb_rooms});
+    if (house) {
+        res.status(200).json({
+        house,
+        success: true,
+        });
+    } else {
+        res.status(400).json({
+        message: 'couldn\'t find any house with that number of rooms',
+        success: false,
+        });
+    }
+};
+
+/**
+ * @DESC To Fetch houses by departure+arrival date  
+ */
+const FetchHousesByDate = async (req, res) => {
+const house = await Houses.find({disponibility: true});   
+function formatDate(date) {
+    var d = new Date(date),
+    month = "" + (d.getMonth() + 1),
+    day = "" + d.getDate(),
+    year = d.getFullYear();
+
+    if (month.length < 2) month = "0" + month;
+    if (day.length < 2) day = "0" + day;
+
+    return [year, month, day].join("-");
+}
+let houses = [];
+if (house) {
+    const reservation = await Reservations.find()
+    if (reservation){
+    reservation.forEach(reserve=>{
+        //if (reserve.available) {
+        if (formatDate(reserve.arrival) <= formatDate(req.body.arrival) 
+        && formatDate(reserve.departure) >= formatDate(req.body.departure)){
+            return res.json({
+            message: 'this house already reserved during that period!',
+            success: false
+            })
+        }else{
+            houses.push(reserve.id_house)
+        }
+        //}
+    })
+    return res.status(200).json({
+        houses,
+        success: true,
+    });
+    }
+} else {
+    res.status(400).json({
+    message: 'That house is already reserved!',
+    success: false,
+    });
+}
+};
+
+/**
+ * @DESC To Fetch houses by address  
+ */
+const FetchHousesByAddress = async (req, res) => {
+    const house = await Houses.find({address: req.body.address});
+    if (house) {
+        res.status(200).json({
+        house,
+        success: true,
+        });
+    } else {
+        res.status(400).json({
+        message: 'couldn\'t find any house with that address',
+        success: false,
+        });
+    }
+};
+
+/**
  * @DESC To add house
  */
 const AddHouses = async(req, res) => {
@@ -173,8 +272,10 @@ const AddHouses = async(req, res) => {
         success: true
     });
 };
-//ADD ROOMS
 
+/**
+ * @DESC To add room
+ */
 const AddRooms = async(req, res) => {
     const Room = new Rooms({
         name: req.body.name,
@@ -188,6 +289,9 @@ const AddRooms = async(req, res) => {
     });
 };
 
+/**
+ * @DESC To add equipment
+ */
 const AddEquipmentRooms = async(req, res) => {
     const Equipment = new Equipment({
         name: req.body.name,
@@ -200,9 +304,9 @@ const AddEquipmentRooms = async(req, res) => {
     });
 };
 
-//ADD BEDS 
-
-
+/**
+ * @DESC To add bed
+ */
 const AddBeds = async(req, res) => {
     try {
         const Bed = new Beds({
@@ -222,6 +326,10 @@ const AddBeds = async(req, res) => {
         });
     }
 };
+
+/**
+ * @DESC To delete house
+ */
 const DeleteHouses = async(req, res) => {
     Houses.findByIdAndRemove({ _id: req.params.id }, (err, doc) => {
         if (err) {
@@ -245,7 +353,9 @@ const DeleteHouses = async(req, res) => {
     });
 }
 
-//DELETE ROOMS
+/**
+ * @DESC To delete room
+ */
 const DeleteRooms = async(req, res) => {
     Rooms.findByIdAndRemove({ _id: req.params.id_room, house_id: req.params.id_house }, (err, doc) => {
         if (err) {
@@ -269,6 +379,9 @@ const DeleteRooms = async(req, res) => {
     });
 }
 
+/**
+ * @DESC To update room
+ */
 const UpdateRooms = async(req, res) => {
     const id = req.params.id;
     const Room = await Rooms.findOne({ _id: id }, (err, foundObject) => {
@@ -306,6 +419,9 @@ const UpdateRooms = async(req, res) => {
     });
 }
 
+/**
+ * @DESC To add equipment
+ */
 const AddEquipment = async(req, res) => {
     const equipment = new Equipments({
         name: req.body.name,
@@ -319,6 +435,10 @@ const AddEquipment = async(req, res) => {
         success: true
     });
 }
+
+/**
+ * @DESC To delete equipment
+ */
 const DeleteEquipment = async(req, res) => {
     Rooms.findByIdAndRemove({ _id: req.params.id_room, house_id: req.params.id_house }, (err, doc) => {
         if (err) {
@@ -341,6 +461,10 @@ const DeleteEquipment = async(req, res) => {
         }
     });
 }
+
+/**
+ * @DESC To update equipment
+ */
 const UpdateEquipment = async(req, res) => {
 
     const id = req.params.id;
@@ -390,7 +514,9 @@ const UpdateEquipment = async(req, res) => {
     // }
 }
 
-
+/**
+ * @DESC To delete bed
+ */
 const DeleteBeds = async(req, res) => {
     Beds.findByIdAndRemove({ _id: req.params.id_bed, house_id: req.params.id_house }, (err, doc) => {
         if (err) {
@@ -414,6 +540,10 @@ const DeleteBeds = async(req, res) => {
     });
 
 }
+
+/**
+ * @DESC To udpate bed
+ */
 const UpdateBeds = async(req, res) => {
 
     const id = req.params.id;
@@ -454,7 +584,9 @@ const UpdateBeds = async(req, res) => {
     });
 }
 
-
+/**
+ * @DESC To udpate house
+ */
 const UpdateHouses = async(req, res) => {
     const id = req.params.id;
     const House = await Houses.findOne({ _id: id }, (err, foundObject) => {
@@ -538,95 +670,9 @@ module.exports = {
     UpdateEquipment,
     AddBeds,
     DeleteBeds,
-    UpdateBeds
-/**
- * @DESC To Fetch houses by name  
- */
-const FetchHousesByName = async (req, res) => {
-  const house = await Houses.find({name: req.body.name});
-  if (house) {
-    res.status(200).json({
-      house,
-      success: true,
-    });
-  } else {
-    res.status(400).json({
-      message: 'couldn\'t find any house with that name',
-      success: false,
-    });
-  }
-};
-
-/**
- * @DESC To Fetch houses by address  
- */
-const FetchHousesByAddress = async (req, res) => {
-  const house = await Houses.find({address: req.body.address});
-  if (house) {
-    res.status(200).json({
-      house,
-      success: true,
-    });
-  } else {
-    res.status(400).json({
-      message: 'couldn\'t find any house with that name',
-      success: false,
-    });
-  }
-};
-
-/**
- * @DESC To Fetch houses by departure+arrival date  
- */
-const FetchHousesByDate = async (req, res) => {
-  const house = await Houses.find({disponibility: true});   
-  function formatDate(date) {
-    var d = new Date(date),
-      month = "" + (d.getMonth() + 1),
-      day = "" + d.getDate(),
-      year = d.getFullYear();
-
-    if (month.length < 2) month = "0" + month;
-    if (day.length < 2) day = "0" + day;
-
-    return [year, month, day].join("-");
-  }
-  let houses = [];
-  if (house) {
-    const reservation = await Reservations.find()
-    if (reservation){
-      reservation.forEach(reserve=>{
-        //if (reserve.available) {
-          if (formatDate(reserve.arrival) <= formatDate(req.body.arrival) 
-          && formatDate(reserve.departure) >= formatDate(req.body.departure)){
-            return res.json({
-              message: 'this house already reserved during that period!',
-              success: false
-            })
-          }else{
-            houses.push(reserve.id_house)
-          }
-        //}
-      })
-      return res.status(200).json({
-        houses,
-        success: true,
-      });
-    }
-  } else {
-    res.status(400).json({
-      message: 'That house is already reserved!',
-      success: false,
-    });
-  }
-};
-
-module.exports = {
-  FetchHouses,
-  FetchHouseEquipments,
-  FetchHouseRooms,
-  FetchRoomBeds,
-  FetchHousesByName,
-  FetchHousesByAddress,
-  FetchHousesByDate,
-};
+    UpdateBeds,
+    FetchHousesByAddress,
+    FetchHousesByDate,
+    FetchHousesByRoom,
+    FetchHousesByName
+}

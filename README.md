@@ -14,7 +14,7 @@ just run the following command:
 
 open terminal and run the follwing command
 
-`npm start bt`
+`npm run bt`
 
 ## Routes
 
